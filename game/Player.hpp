@@ -37,10 +37,12 @@ private:
 public:
     Player(const char *_name, SDL_Renderer *_renderer);
     void move(SDL_Event event);
-    SDL_Rect pos;
+    void moveTo(SDL_Point point);
     void exec();
     void start();
     void end();
+    
+    SDL_Rect pos;
 };
 
 #endif /* Player_hpp */

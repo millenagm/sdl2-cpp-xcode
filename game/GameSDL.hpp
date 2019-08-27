@@ -37,8 +37,10 @@ private:
     bool _isRunning;
     void handleEvent(SDL_Event);
     vector<Collectible *> collectibles;
+    vector<Collectible *> walls;
     Collectible *p;
     void checkCollisions();
+    bool isHittingWall;
 public:
     GameSDL(int, int);
     bool isRunning();

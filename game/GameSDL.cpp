@@ -40,13 +40,16 @@ bool GameSDL::isRunning() {
 }
 
 void GameSDL::handleEvent(SDL_Event event) {
-    if (event.type == SDL_QUIT) {
+    if (event.type == SDL_MOUSEBUTTONDOWN) {
+        SDL_Point point = { event.button.x, event.button.y };
+        player->moveTo(point);
+    } else if (event.type == SDL_QUIT) {
         _isRunning = false;
     } else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_SPACE) {
         int rand_x = rand() % width ;
         int rand_y = rand() % height ;
         collectibles.push_back(new Collectible("bone.png", renderer, rand_x, rand_y));
-    } else {
+    } else if (!isHittingWall)  {
         player->move(event);
     }
 }
@@ -58,22 +61,17 @@ void GameSDL::start() {
 }
 
 void GameSDL::exec() {
+    SDL_Event event;
+    if (SDL_PollEvent(&event)){  handleEvent(event); }
+    
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderClear(renderer);
     
     player->exec();
-    
     for (Collectible* col : collectibles)
         col->exec();
     
     checkCollisions();
-    
-    SDL_Event event;
-    
-    if (SDL_PollEvent(&event)){
-        handleEvent(event);
-    }
-    
     SDL_RenderPresent(renderer);
 }
 

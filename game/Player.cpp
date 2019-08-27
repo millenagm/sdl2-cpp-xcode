@@ -26,6 +26,13 @@ Player::Player(const char *_name, SDL_Renderer *_renderer) {
     };
 }
 
+void Player::moveTo(SDL_Point point) {
+    int dx = point.x - pos.x;
+    int dy = point.y - pos.y;
+    
+    pos.x = point.x - (image->w / num_sprites_width / 2);
+    pos.y = point.y - (image->h / num_sprites_height / 2);
+}
 void Player::move(SDL_Event event) {
     switch(event.type){
         case SDL_KEYDOWN:
