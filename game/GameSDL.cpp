@@ -40,7 +40,7 @@ void GameSDL::handleEvent(SDL_Event event) {
             _isRunning = false;
             break;
         case SDL_KEYDOWN:
-            printf("%s\n", SDL_GetKeyName(event.key.keysym.sym));
+            player->move(event.key.keysym.sym);
             break;
         default:
             break;
@@ -48,6 +48,7 @@ void GameSDL::handleEvent(SDL_Event event) {
 }
 
 void GameSDL::start() {
+    player = new Player("panda", "sprite.png");
     _isRunning = true;
 }
 

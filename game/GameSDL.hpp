@@ -17,6 +17,8 @@
 #include <iostream>
 #include <stdio.h>
 
+#include "Player.hpp"
+
 enum GameState
 {
     Idle,
@@ -24,6 +26,8 @@ enum GameState
 
 class GameSDL {
 private:
+    Player *player;
+    
     SDL_Window *window;
     SDL_Renderer *renderer;
     bool _isRunning;
