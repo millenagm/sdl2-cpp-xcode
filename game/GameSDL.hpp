@@ -16,6 +16,12 @@
 
 #include <iostream>
 #include <stdio.h>
+#include <vector>
+
+#include "Player.hpp"
+#include "Collectible.hpp"
+
+using namespace std;
 
 enum GameState
 {
@@ -24,10 +30,15 @@ enum GameState
 
 class GameSDL {
 private:
+    int width, height;
+    Player *player;
     SDL_Window *window;
     SDL_Renderer *renderer;
     bool _isRunning;
     void handleEvent(SDL_Event);
+    vector<Collectible *> collectibles;
+    Collectible *p;
+    void checkCollisions();
 public:
     GameSDL(int, int);
     bool isRunning();
