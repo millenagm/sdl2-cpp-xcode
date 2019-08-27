@@ -8,18 +8,13 @@
 
 #include "Player.hpp"
 
-int num_sprites_width = 9;
-int num_sprites_height = 4;
-
-int direction_up = 0;
-int direction_down = 2;
-int direction_left = 1;
-int direction_right = 3;
+const int num_sprites_width = 9;
+const int num_sprites_height = 4;
 
 Player::Player(const char *_name, SDL_Renderer *_renderer) {
     name = _name;
     renderer = _renderer;
-    speed = 1.f;
+    speed = 10.f;
     image = IMG_Load("link.png");
     texture = SDL_CreateTextureFromSurface(renderer, image);
     direction = direction_down;
@@ -56,7 +51,7 @@ void Player::exec() {
     Uint32 sprite = 0;
     
     if (moving) {
-        Uint32 seconds = SDL_GetTicks() / (1000 / (num_sprites_width * speed));
+        Uint32 seconds = SDL_GetTicks() / (1000 / (num_sprites_width * 1));
         sprite = seconds % num_sprites_width;
     }
     
@@ -66,9 +61,7 @@ void Player::exec() {
                     image->w / num_sprites_width,
                     image->h / num_sprites_height };
     
-    SDL_RenderClear(renderer);
     SDL_RenderCopy(renderer, texture, &src, &pos);
-    SDL_RenderPresent(renderer);
 }
 
 void Player::end() {

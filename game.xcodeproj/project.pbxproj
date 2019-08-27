@@ -11,6 +11,7 @@
 		C201FADC231528DF00C5892B /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C201FADA231528DF00C5892B /* Player.cpp */; };
 		C201FAE7231540A900C5892B /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C201FAE5231540A900C5892B /* SDL2.framework */; };
 		C201FAE8231540A900C5892B /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C201FAE6231540A900C5892B /* SDL2_image.framework */; };
+		C201FAF12315716000C5892B /* Collectible.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C201FAEF2315716000C5892B /* Collectible.cpp */; };
 		C2D952BB23100896008C3166 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2D952BA23100896008C3166 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +44,9 @@
 		C201FAE5231540A900C5892B /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		C201FAE6231540A900C5892B /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		C201FAED2315614900C5892B /* link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = link.png; sourceTree = "<group>"; };
+		C201FAEF2315716000C5892B /* Collectible.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Collectible.cpp; sourceTree = "<group>"; };
+		C201FAF02315716000C5892B /* Collectible.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Collectible.hpp; sourceTree = "<group>"; };
+		C201FAF323157A8500C5892B /* bone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bone.png; sourceTree = "<group>"; };
 		C2D952B723100896008C3166 /* game */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = game; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D952BA23100896008C3166 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +94,9 @@
 			isa = PBXGroup;
 			children = (
 				C201FAED2315614900C5892B /* link.png */,
+				C201FAF323157A8500C5892B /* bone.png */,
+				C201FAF02315716000C5892B /* Collectible.hpp */,
+				C201FAEF2315716000C5892B /* Collectible.cpp */,
 				C201FADB231528DF00C5892B /* Player.hpp */,
 				C201FADA231528DF00C5892B /* Player.cpp */,
 				C201FAC52314449D00C5892B /* GameSDL.hpp */,
@@ -159,6 +166,7 @@
 			files = (
 				C2D952BB23100896008C3166 /* main.cpp in Sources */,
 				C201FAC62314449D00C5892B /* GameSDL.cpp in Sources */,
+				C201FAF12315716000C5892B /* Collectible.cpp in Sources */,
 				C201FADC231528DF00C5892B /* Player.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

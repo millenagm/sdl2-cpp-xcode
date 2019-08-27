@@ -8,9 +8,11 @@
 
 #include "GameSDL.hpp"
 
-GameSDL::GameSDL(int width, int height) {
+GameSDL::GameSDL(int _width, int _height) {
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
+    width = _width;
+    height = _height;
     
     window = SDL_CreateWindow("Game",
                               SDL_WINDOWPOS_UNDEFINED,
@@ -38,13 +40,14 @@ bool GameSDL::isRunning() {
 }
 
 void GameSDL::handleEvent(SDL_Event event) {
-    switch(event.type) {
-        case SDL_QUIT:
-            _isRunning = false;
-            break;
-        default:
-            player->move(event);
-            break;
+    if (event.type == SDL_QUIT) {
+        _isRunning = false;
+    } else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_SPACE) {
+        int rand_x = rand() % width ;
+        int rand_y = rand() % height ;
+        collectibles.push_back(new Collectible("bone.png", renderer, rand_x, rand_y));
+    } else {
+        player->move(event);
     }
 }
 
@@ -59,6 +62,10 @@ void GameSDL::exec() {
     SDL_RenderClear(renderer);
     
     player->exec();
+    
+    for (Collectible* x : collectibles) {
+        x->exec();
+    }
     
     SDL_Event event;
     

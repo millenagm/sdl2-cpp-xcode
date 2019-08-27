@@ -1,13 +1,13 @@
 //
-//  Player.hpp
+//  Collectible.hpp
 //  game
 //
 //  Created by Millena Galvão on 27/08/2019.
 //  Copyright © 2019 millena. All rights reserved.
 //
 
-#ifndef Player_hpp
-#define Player_hpp
+#ifndef Collectible_hpp
+#define Collectible_hpp
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdocumentation"
@@ -16,32 +16,22 @@
 
 #include <SDL2_image/SDL_image.h>
 #include <iostream>
+#include <stdio.h>
 
-enum Direction {
-    direction_up = 0,
-    direction_down = 2,
-    direction_left = 1,
-    direction_right = 3,
-};
-
-class Player {
+class Collectible {
 protected:
     SDL_Renderer *renderer;
 private:
-    float speed;
-    Direction direction;
     SDL_Rect pos;
     SDL_Texture *texture;
     SDL_Surface *image;
-    const char *name;
-    bool moving;
+    float angle;
 public:
-    Player(const char *_name, SDL_Renderer *_renderer);
-    void move(SDL_Event event);
+    Collectible(const char *sprite, SDL_Renderer *_renderer, int x, int y);
     
     void exec();
     void start();
     void end();
 };
 
-#endif /* Player_hpp */
+#endif /* Collectible_hpp */
