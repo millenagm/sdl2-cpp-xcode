@@ -22,13 +22,14 @@ class Collectible {
 protected:
     SDL_Renderer *renderer;
 private:
-    SDL_Rect pos;
     SDL_Texture *texture;
     SDL_Surface *image;
     float angle;
 public:
     Collectible(const char *sprite, SDL_Renderer *_renderer, int x, int y);
+    ~Collectible();
     
+    SDL_Rect pos;
     void exec();
     void start();
     void end();

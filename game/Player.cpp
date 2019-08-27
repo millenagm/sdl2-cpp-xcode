@@ -66,5 +66,4 @@ void Player::exec() {
 
 void Player::end() {
     SDL_DestroyTexture(texture);
-    SDL_FreeSurface(image);
 }

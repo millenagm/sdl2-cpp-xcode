@@ -63,9 +63,10 @@ void GameSDL::exec() {
     
     player->exec();
     
-    for (Collectible* x : collectibles) {
-        x->exec();
-    }
+    for (Collectible* col : collectibles)
+        col->exec();
+    
+    checkCollisions();
     
     SDL_Event event;
     
@@ -76,9 +77,22 @@ void GameSDL::exec() {
     SDL_RenderPresent(renderer);
 }
 
+void GameSDL::checkCollisions() {
+    for (int i =0; i < collectibles.size(); i++ ) {
+        Collectible *col = collectibles[i];
+        if (SDL_HasIntersection(&player->pos, &col->pos)) {
+            col->end();
+            collectibles.erase(collectibles.begin() + i);
+        }
+    }
+}
+
 
 void GameSDL::end() {
     player->end();
+    
+    for (Collectible* col : collectibles)
+        col->end();
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);

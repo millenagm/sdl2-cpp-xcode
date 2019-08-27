@@ -33,5 +33,4 @@ void Collectible::exec() {
 
 void Collectible::end() {
     SDL_DestroyTexture(texture);
-    SDL_FreeSurface(image);
 }

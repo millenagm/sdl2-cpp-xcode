@@ -38,6 +38,7 @@ private:
     void handleEvent(SDL_Event);
     vector<Collectible *> collectibles;
     Collectible *p;
+    void checkCollisions();
 public:
     GameSDL(int, int);
     bool isRunning();

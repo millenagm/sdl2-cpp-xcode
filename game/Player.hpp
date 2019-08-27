@@ -30,7 +30,6 @@ protected:
 private:
     float speed;
     Direction direction;
-    SDL_Rect pos;
     SDL_Texture *texture;
     SDL_Surface *image;
     const char *name;
@@ -38,7 +37,7 @@ private:
 public:
     Player(const char *_name, SDL_Renderer *_renderer);
     void move(SDL_Event event);
-    
+    SDL_Rect pos;
     void exec();
     void start();
     void end();
