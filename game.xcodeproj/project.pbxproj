@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C201FAC62314449D00C5892B /* GameSDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C201FAC42314449D00C5892B /* GameSDL.cpp */; };
-		C201FAD7231526F800C5892B /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C201FAD6231526F800C5892B /* SDL2.framework */; };
-		C201FAD82315270000C5892B /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = C201FAD6231526F800C5892B /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C201FADC231528DF00C5892B /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C201FADA231528DF00C5892B /* Player.cpp */; };
+		C201FAE7231540A900C5892B /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C201FAE5231540A900C5892B /* SDL2.framework */; };
+		C201FAE8231540A900C5892B /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C201FAE6231540A900C5892B /* SDL2_image.framework */; };
 		C2D952BB23100896008C3166 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2D952BA23100896008C3166 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -21,7 +21,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C201FAD82315270000C5892B /* SDL2.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -39,9 +38,11 @@
 /* Begin PBXFileReference section */
 		C201FAC42314449D00C5892B /* GameSDL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameSDL.cpp; sourceTree = "<group>"; };
 		C201FAC52314449D00C5892B /* GameSDL.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameSDL.hpp; sourceTree = "<group>"; };
-		C201FAD6231526F800C5892B /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
 		C201FADA231528DF00C5892B /* Player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		C201FADB231528DF00C5892B /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
+		C201FAE5231540A900C5892B /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		C201FAE6231540A900C5892B /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		C201FAED2315614900C5892B /* link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = link.png; sourceTree = "<group>"; };
 		C2D952B723100896008C3166 /* game */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = game; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D952BA23100896008C3166 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,7 +52,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C201FAD7231526F800C5892B /* SDL2.framework in Frameworks */,
+				C201FAE7231540A900C5892B /* SDL2.framework in Frameworks */,
+				C201FAE8231540A900C5892B /* SDL2_image.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +63,8 @@
 		C201FAB22314424E00C5892B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C201FAD6231526F800C5892B /* SDL2.framework */,
+				C201FAE6231540A900C5892B /* SDL2_image.framework */,
+				C201FAE5231540A900C5892B /* SDL2.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -86,6 +89,7 @@
 		C2D952B923100896008C3166 /* game */ = {
 			isa = PBXGroup;
 			children = (
+				C201FAED2315614900C5892B /* link.png */,
 				C201FADB231528DF00C5892B /* Player.hpp */,
 				C201FADA231528DF00C5892B /* Player.cpp */,
 				C201FAC52314449D00C5892B /* GameSDL.hpp */,
@@ -279,7 +283,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/game",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 					"$(PROJECT_DIR)",
 				);
@@ -294,7 +297,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/game",
 					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 					"$(PROJECT_DIR)",
 				);

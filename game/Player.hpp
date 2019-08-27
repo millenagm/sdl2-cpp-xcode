@@ -14,14 +14,27 @@
 #include <SDL2/SDL.h>
 #pragma clang diagnostic pop
 
+#include <SDL2_image/SDL_image.h>
 #include <iostream>
 
 class Player {
+protected:
+    SDL_Renderer *renderer;
 private:
-    const char *name, *sprite;
+    float speed;
+    int direction;
+    SDL_Rect pos;
+    SDL_Texture *texture;
+    SDL_Surface *image;
+    const char *name;
+    bool moving;
 public:
-    Player(const char *_name, const char *_sprite);
-    void move(SDL_Keycode keyCode);
+    Player(const char *_name, SDL_Renderer *_renderer);
+    void move(SDL_Event event);
+    
+    void exec();
+    void start();
+    void end();
 };
 
 #endif /* Player_hpp */

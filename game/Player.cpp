@@ -8,30 +8,70 @@
 
 #include "Player.hpp"
 
+int num_sprites_width = 9;
+int num_sprites_height = 4;
 
-Player::Player(const char *_name, const char *_sprite) {
+int direction_up = 0;
+int direction_down = 2;
+int direction_left = 1;
+int direction_right = 3;
+
+Player::Player(const char *_name, SDL_Renderer *_renderer) {
     name = _name;
-    sprite = _sprite;
+    renderer = _renderer;
+    speed = 1.f;
+    image = IMG_Load("link.png");
+    texture = SDL_CreateTextureFromSurface(renderer, image);
+    direction = direction_down;
     
-    printf("new player: %s", name);
+    float scale = 1.0f;
+    pos = { 0, 0,
+        static_cast<int>(image->w / num_sprites_width * scale),
+        static_cast<int>(image->h / num_sprites_height * scale)
+    };
 }
 
-void Player::move(SDL_Keycode keyCode) {
-    switch(keyCode){
-        case SDLK_LEFT:
-            printf("%s is moving left\n", name);
+void Player::move(SDL_Event event) {
+    switch(event.type){
+        case SDL_KEYDOWN:
+            switch (event.key.keysym.sym) {
+                case SDLK_LEFT:     pos.x -= speed; direction = direction_left;     moving = true; break;
+                case SDLK_RIGHT:    pos.x += speed; direction = direction_right;    moving = true; break;
+                case SDLK_UP:       pos.y -= speed; direction = direction_up;       moving = true; break;
+                case SDLK_DOWN:     pos.y += speed; direction = direction_down;     moving = true; break;
+                default:
+                    printf("%s not handled for Player", SDL_GetKeyName(event.key.keysym.sym));
+                    break;
+            }
             break;
-        case SDLK_RIGHT:
-            printf("%s is moving right\n", name);
-            break;
-        case SDLK_UP:
-            printf("%s is moving up\n", name);
-            break;
-        case SDLK_DOWN:
-            printf("%s is moving down\n", name);
-            break;
-        default:
-            printf("%s does not move %s\n", SDL_GetKeyName(keyCode), name);
-            break;
+        default: moving = false; break;
     }
+}
+
+void Player::start() {
+    
+}
+
+void Player::exec() {
+    Uint32 sprite = 0;
+    
+    if (moving) {
+        Uint32 seconds = SDL_GetTicks() / (1000 / (num_sprites_width * speed));
+        sprite = seconds % num_sprites_width;
+    }
+    
+    SDL_Rect src = { static_cast<int>
+        (sprite *   image->w / num_sprites_width),
+                    image->h / num_sprites_height * direction,
+                    image->w / num_sprites_width,
+                    image->h / num_sprites_height };
+    
+    SDL_RenderClear(renderer);
+    SDL_RenderCopy(renderer, texture, &src, &pos);
+    SDL_RenderPresent(renderer);
+}
+
+void Player::end() {
+    SDL_DestroyTexture(texture);
+    SDL_FreeSurface(image);
 }

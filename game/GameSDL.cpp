@@ -9,6 +9,9 @@
 #include "GameSDL.hpp"
 
 GameSDL::GameSDL(int width, int height) {
+    SDL_Init(SDL_INIT_VIDEO);
+    IMG_Init(IMG_INIT_PNG);
+    
     window = SDL_CreateWindow("Game",
                               SDL_WINDOWPOS_UNDEFINED,
                               SDL_WINDOWPOS_UNDEFINED,
@@ -22,7 +25,7 @@ GameSDL::GameSDL(int width, int height) {
         return;
     }
     
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     
     if (renderer == nullptr) {
         SDL_Log("renderer == nullptr %s", SDL_GetError());
@@ -39,34 +42,39 @@ void GameSDL::handleEvent(SDL_Event event) {
         case SDL_QUIT:
             _isRunning = false;
             break;
-        case SDL_KEYDOWN:
-            player->move(event.key.keysym.sym);
-            break;
         default:
+            player->move(event);
             break;
     }
 }
 
 void GameSDL::start() {
-    player = new Player("panda", "sprite.png");
+    player = new Player("link", renderer);
+    player->start();
     _isRunning = true;
 }
 
 void GameSDL::exec() {
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_RenderClear(renderer);
+    
+    player->exec();
+    
     SDL_Event event;
     
     if (SDL_PollEvent(&event)){
         handleEvent(event);
     }
     
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);
 }
 
 
 void GameSDL::end() {
+    player->end();
+
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    IMG_Quit();
     SDL_Quit();
 }
