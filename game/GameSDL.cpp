@@ -61,13 +61,16 @@ void GameSDL::start() {
 }
 
 void GameSDL::exec() {
+    clock.tick();
+    
     SDL_Event event;
     if (SDL_PollEvent(&event)){  handleEvent(event); }
     
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderClear(renderer);
     
-    player->exec();
+    player->exec(clock.delta);
+    
     for (Collectible* col : collectibles)
         col->exec();
     

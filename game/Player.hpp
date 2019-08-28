@@ -17,6 +17,10 @@
 #include <SDL2_image/SDL_image.h>
 #include <iostream>
 
+#include "mathcpp/Vector2D.h"
+
+using namespace math;
+
 enum Direction {
     direction_up = 0,
     direction_down = 2,
@@ -34,11 +38,12 @@ private:
     SDL_Surface *image;
     const char *name;
     bool moving;
+    Vector2D destination, destCopy;
 public:
     Player(const char *_name, SDL_Renderer *_renderer);
     void move(SDL_Event event);
     void moveTo(SDL_Point point);
-    void exec();
+    void exec(float);
     void start();
     void end();
     

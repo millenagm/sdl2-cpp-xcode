@@ -8,45 +8,50 @@
 
 #include "Player.hpp"
 
+
 const int num_sprites_width = 9;
 const int num_sprites_height = 4;
 
 Player::Player(const char *_name, SDL_Renderer *_renderer) {
     name = _name;
     renderer = _renderer;
-    speed = 10.f;
+    speed = 0.2f;
     image = IMG_Load("link.png");
     texture = SDL_CreateTextureFromSurface(renderer, image);
     direction = direction_down;
     
     float scale = 1.0f;
+    float w = image->w / num_sprites_width * scale;
+    float h = image->h / num_sprites_height * scale;
     pos = { 0, 0,
-        static_cast<int>(image->w / num_sprites_width * scale),
-        static_cast<int>(image->h / num_sprites_height * scale)
+        static_cast<int>(w),
+        static_cast<int>(h)
     };
+    
+    destination = Vector2D(0, 0);
 }
 
 void Player::moveTo(SDL_Point point) {
-    int dx = point.x - pos.x;
-    int dy = point.y - pos.y;
-    
-    pos.x = point.x - (image->w / num_sprites_width / 2);
-    pos.y = point.y - (image->h / num_sprites_height / 2);
+    destCopy = Vector2D(point.x, point.y);
+    destination = destCopy - Vector2D(pos.x , pos.y);
+    destination.normalize();
+    moving = true;
 }
+
 void Player::move(SDL_Event event) {
     switch(event.type){
         case SDL_KEYDOWN:
             switch (event.key.keysym.sym) {
-                case SDLK_LEFT:     pos.x -= speed; direction = direction_left;     moving = true; break;
-                case SDLK_RIGHT:    pos.x += speed; direction = direction_right;    moving = true; break;
-                case SDLK_UP:       pos.y -= speed; direction = direction_up;       moving = true; break;
-                case SDLK_DOWN:     pos.y += speed; direction = direction_down;     moving = true; break;
-                default:
-                    printf("%s not handled for Player", SDL_GetKeyName(event.key.keysym.sym));
-                    break;
+                case SDLK_LEFT:     direction = direction_left;  destination = Vector2D(-1,  0);   moving = true; break;
+                case SDLK_RIGHT:    direction = direction_right; destination = Vector2D( 1,  0);   moving = true; break;
+                case SDLK_UP:       direction = direction_up;    destination = Vector2D( 0, -1);   moving = true; break;
+                case SDLK_DOWN:     direction = direction_down;  destination = Vector2D( 0,  1);   moving = true; break;
+                default: break;
             }
             break;
-        default: moving = false; break;
+        case SDL_KEYUP:
+            moving = false; break;
+        default: break;
     }
 }
 
@@ -54,12 +59,15 @@ void Player::start() {
     
 }
 
-void Player::exec() {
+void Player::exec(float delta) {
     Uint32 sprite = 0;
     
     if (moving) {
         Uint32 seconds = SDL_GetTicks() / (1000 / (num_sprites_width * 1));
         sprite = seconds % num_sprites_width;
+        
+        pos.x += speed * destination.x * delta;
+        pos.y += speed * destination.y * delta;
     }
     
     SDL_Rect src = { static_cast<int>
@@ -68,7 +76,7 @@ void Player::exec() {
                     image->w / num_sprites_width,
                     image->h / num_sprites_height };
     
-    SDL_RenderCopy(renderer, texture, &src, &pos);
+    SDL_RenderCopyEx(renderer, texture, &src, &pos, NULL, NULL, SDL_FLIP_NONE);
 }
 
 void Player::end() {

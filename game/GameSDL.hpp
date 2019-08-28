@@ -28,6 +28,19 @@ enum GameState
     Idle,
 };
 
+struct Clock
+{
+    uint32_t last_tick_time = 0;
+    uint32_t delta = 0;
+    
+    void tick()
+    {
+        uint32_t tick_time = SDL_GetTicks();
+        delta = tick_time - last_tick_time;
+        last_tick_time = tick_time;
+    }
+};
+
 class GameSDL {
 private:
     int width, height;
@@ -39,6 +52,7 @@ private:
     vector<Collectible *> collectibles;
     vector<Collectible *> walls;
     Collectible *p;
+    Clock clock;
     void checkCollisions();
     bool isHittingWall;
 public:

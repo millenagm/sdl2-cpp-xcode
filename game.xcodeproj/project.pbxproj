@@ -12,6 +12,11 @@
 		C201FAE7231540A900C5892B /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C201FAE5231540A900C5892B /* SDL2.framework */; };
 		C201FAE8231540A900C5892B /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C201FAE6231540A900C5892B /* SDL2_image.framework */; };
 		C201FAF12315716000C5892B /* Collectible.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C201FAEF2315716000C5892B /* Collectible.cpp */; };
+		C20DC8D1231690E700F2A5F0 /* Matrix3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C20DC8C7231690E700F2A5F0 /* Matrix3.cpp */; };
+		C20DC8D2231690E700F2A5F0 /* MathUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C20DC8C8231690E700F2A5F0 /* MathUtil.cpp */; };
+		C20DC8D3231690E700F2A5F0 /* Vector3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C20DC8C9231690E700F2A5F0 /* Vector3D.cpp */; };
+		C20DC8D4231690E700F2A5F0 /* AffineTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C20DC8CA231690E700F2A5F0 /* AffineTransform.cpp */; };
+		C20DC8D5231690E700F2A5F0 /* Vector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C20DC8CB231690E700F2A5F0 /* Vector2D.cpp */; };
 		C2D952BB23100896008C3166 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2D952BA23100896008C3166 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +52,16 @@
 		C201FAEF2315716000C5892B /* Collectible.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Collectible.cpp; sourceTree = "<group>"; };
 		C201FAF02315716000C5892B /* Collectible.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Collectible.hpp; sourceTree = "<group>"; };
 		C201FAF323157A8500C5892B /* bone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bone.png; sourceTree = "<group>"; };
+		C20DC8C6231690E700F2A5F0 /* AffineTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AffineTransform.h; sourceTree = "<group>"; };
+		C20DC8C7231690E700F2A5F0 /* Matrix3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix3.cpp; sourceTree = "<group>"; };
+		C20DC8C8231690E700F2A5F0 /* MathUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MathUtil.cpp; sourceTree = "<group>"; };
+		C20DC8C9231690E700F2A5F0 /* Vector3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector3D.cpp; sourceTree = "<group>"; };
+		C20DC8CA231690E700F2A5F0 /* AffineTransform.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AffineTransform.cpp; sourceTree = "<group>"; };
+		C20DC8CB231690E700F2A5F0 /* Vector2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector2D.cpp; sourceTree = "<group>"; };
+		C20DC8CC231690E700F2A5F0 /* Vector3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3D.h; sourceTree = "<group>"; };
+		C20DC8CD231690E700F2A5F0 /* Matrix3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix3.h; sourceTree = "<group>"; };
+		C20DC8CE231690E700F2A5F0 /* MathUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathUtil.h; sourceTree = "<group>"; };
+		C20DC8CF231690E700F2A5F0 /* Vector2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector2D.h; sourceTree = "<group>"; };
 		C2D952B723100896008C3166 /* game */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = game; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D952BA23100896008C3166 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +88,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C20DC8C5231690E700F2A5F0 /* mathcpp */ = {
+			isa = PBXGroup;
+			children = (
+				C20DC8C6231690E700F2A5F0 /* AffineTransform.h */,
+				C20DC8C7231690E700F2A5F0 /* Matrix3.cpp */,
+				C20DC8C8231690E700F2A5F0 /* MathUtil.cpp */,
+				C20DC8C9231690E700F2A5F0 /* Vector3D.cpp */,
+				C20DC8CA231690E700F2A5F0 /* AffineTransform.cpp */,
+				C20DC8CB231690E700F2A5F0 /* Vector2D.cpp */,
+				C20DC8CC231690E700F2A5F0 /* Vector3D.h */,
+				C20DC8CD231690E700F2A5F0 /* Matrix3.h */,
+				C20DC8CE231690E700F2A5F0 /* MathUtil.h */,
+				C20DC8CF231690E700F2A5F0 /* Vector2D.h */,
+			);
+			path = mathcpp;
+			sourceTree = "<group>";
+		};
 		C2D952AE23100896008C3166 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +125,7 @@
 		C2D952B923100896008C3166 /* game */ = {
 			isa = PBXGroup;
 			children = (
+				C20DC8C5231690E700F2A5F0 /* mathcpp */,
 				C201FAED2315614900C5892B /* link.png */,
 				C201FAF323157A8500C5892B /* bone.png */,
 				C201FAF02315716000C5892B /* Collectible.hpp */,
@@ -164,10 +197,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C20DC8D1231690E700F2A5F0 /* Matrix3.cpp in Sources */,
+				C20DC8D4231690E700F2A5F0 /* AffineTransform.cpp in Sources */,
+				C20DC8D3231690E700F2A5F0 /* Vector3D.cpp in Sources */,
 				C2D952BB23100896008C3166 /* main.cpp in Sources */,
 				C201FAC62314449D00C5892B /* GameSDL.cpp in Sources */,
+				C20DC8D2231690E700F2A5F0 /* MathUtil.cpp in Sources */,
 				C201FAF12315716000C5892B /* Collectible.cpp in Sources */,
 				C201FADC231528DF00C5892B /* Player.cpp in Sources */,
+				C20DC8D5231690E700F2A5F0 /* Vector2D.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
