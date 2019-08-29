@@ -35,7 +35,6 @@ Player::Player(const char *_name, SDL_Renderer *_renderer, int _size) {
     
     pos = { w, h, w, h };
     destinationPoint = Vector2D(w, h);
-    lastCollider = { -10000, -10000, -10000, -10000 };
 }
 
 void Player::moveTo(SDL_Point point) {
@@ -60,14 +59,22 @@ Direction spritedirection(Vector2D dir) {
 }
 
 void Player::cancelMovement(SDL_Rect collider) {
-    lastCollider = collider;
-    int nx = lastCollider.x,
-        ny = lastCollider.y;
-    switch (spritedirection(direction)) {
-            //works
+    int nx = collider.x,
+        ny = collider.y;
+    
+    Vector2D diffVector = Vector2D(nx , ny) - Vector2D(pos.x , pos.y);
+    
+    if (collider.x != pos.x) {
+        direction = diffVector.x > 0 ? vector_right : vector_left;
+    } else if (collider.y != pos.y) {
+        direction = diffVector.y > 0 ? vector_down : vector_up;
+    }
+    
+    spriteDirection = spritedirection(direction);
+    
+    switch (spriteDirection) {
         case direction_right: nx -= w; break;
         case direction_down:  ny -= h; break;
-            //doesn't work :o
         case direction_left:  nx += w; break;
         case direction_up:    ny += h; break;
     }
@@ -75,6 +82,8 @@ void Player::cancelMovement(SDL_Rect collider) {
 }
 
 void Player::exec(float delta) {
+    // TODO:
+    // AStart Pathfinding
     Vector2D diffVector = destinationPoint - Vector2D(pos.x , pos.y);
     
     if (destinationPoint.x != pos.x) {
@@ -84,6 +93,7 @@ void Player::exec(float delta) {
     } else {
         direction = vector_zero;
     }
+    // AStart Pathfinding
 
     pos.x += speed * direction.x * delta;
     pos.y += speed * direction.y * delta;
@@ -95,9 +105,11 @@ void Player::exec(float delta) {
         sprite = seconds % num_sprites_width;
     }
     
+    spriteDirection = spritedirection(direction);
+    
     SDL_Rect src = { static_cast<int>
         (sprite * image->w / num_sprites_width),
-        (image->h / num_sprites_height * spritedirection(direction)),
+        image->h / num_sprites_height * spriteDirection,
         image->w / num_sprites_width,
         image->h / num_sprites_height };
     

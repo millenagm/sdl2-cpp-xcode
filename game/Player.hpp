@@ -37,7 +37,7 @@ private:
     SDL_Texture *texture;
     SDL_Surface *image;
     const char *name;
-    SDL_Rect lastCollider;
+    Direction spriteDirection;
     Vector2D direction, destinationPoint;
 public:
     Player(const char *_name, SDL_Renderer *_renderer, int _size);
