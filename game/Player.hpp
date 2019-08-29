@@ -33,20 +33,18 @@ protected:
     SDL_Renderer *renderer;
 private:
     float speed;
-    Direction direction;
+    int w, h;
     SDL_Texture *texture;
     SDL_Surface *image;
     const char *name;
     bool moving;
-    Vector2D destination, destCopy;
+    Vector2D direction, destinationPoint;
 public:
-    Player(const char *_name, SDL_Renderer *_renderer);
-    void move(SDL_Event event);
+    Player(const char *_name, SDL_Renderer *_renderer, int _size);
     void moveTo(SDL_Point point);
     void exec(float);
     void start();
-    void end();
-    
+    void end();    
     SDL_Rect pos;
 };
 

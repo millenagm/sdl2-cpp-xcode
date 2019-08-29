@@ -8,6 +8,8 @@
 
 #include "GameSDL.hpp"
 
+int tileSize = 64;
+
 GameSDL::GameSDL(int _width, int _height) {
     SDL_Init(SDL_INIT_VIDEO);
     IMG_Init(IMG_INIT_PNG);
@@ -45,17 +47,12 @@ void GameSDL::handleEvent(SDL_Event event) {
         player->moveTo(point);
     } else if (event.type == SDL_QUIT) {
         _isRunning = false;
-    } else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_SPACE) {
-        int rand_x = rand() % width ;
-        int rand_y = rand() % height ;
-        collectibles.push_back(new Collectible("bone.png", renderer, rand_x, rand_y));
-    } else if (!isHittingWall)  {
-        player->move(event);
     }
 }
 
 void GameSDL::start() {
-    player = new Player("link", renderer);
+    player = new Player("link", renderer, tileSize);
+    map = new Map(tileSize, renderer);
     player->start();
     _isRunning = true;
 }
@@ -69,31 +66,22 @@ void GameSDL::exec() {
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderClear(renderer);
     
+    map->exec();
     player->exec(clock.delta);
-    
-    for (Collectible* col : collectibles)
-        col->exec();
     
     checkCollisions();
     SDL_RenderPresent(renderer);
 }
 
 void GameSDL::checkCollisions() {
-    for (int i =0; i < collectibles.size(); i++ ) {
-        Collectible *col = collectibles[i];
-        if (SDL_HasIntersection(&player->pos, &col->pos)) {
+    for (Sprite* col :  map->getCollectibles())
+        if (SDL_HasIntersection(&player->pos, &col->pos))
             col->end();
-            collectibles.erase(collectibles.begin() + i);
-        }
-    }
 }
 
 
 void GameSDL::end() {
     player->end();
-    
-    for (Collectible* col : collectibles)
-        col->end();
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);

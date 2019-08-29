@@ -8,17 +8,12 @@
 
 #include "Collectible.hpp"
 
-Collectible::Collectible(const char *sprite, SDL_Renderer *_renderer, int x, int y) {
+Collectible::Collectible(const char *sprite, SDL_Renderer *_renderer, int x, int y, int _size) {
     renderer = _renderer;
     image = IMG_Load(sprite);
     texture = SDL_CreateTextureFromSurface(renderer, image);
     
-    float scale = 0.3f;
-    pos = { x, y,
-        static_cast<int>(image->w / 1 * scale),
-        static_cast<int>(image->h / 1 * scale)
-    };
-    
+    pos = { x, y, _size, _size };
     angle = rand() % 360;
 }
 

@@ -11,9 +11,11 @@
 #include <stdio.h>
 
 #include "GameSDL.hpp"
+#include "Map.hpp"
 
 int main(int argc, const char * argv[]) {
-    GameSDL *game = new GameSDL(640, 480);
+    
+    GameSDL *game = new GameSDL(640, 640);
     game->start();
 
     while (game->isRunning()) {

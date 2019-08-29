@@ -17,6 +17,8 @@
 		C20DC8D3231690E700F2A5F0 /* Vector3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C20DC8C9231690E700F2A5F0 /* Vector3D.cpp */; };
 		C20DC8D4231690E700F2A5F0 /* AffineTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C20DC8CA231690E700F2A5F0 /* AffineTransform.cpp */; };
 		C20DC8D5231690E700F2A5F0 /* Vector2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C20DC8CB231690E700F2A5F0 /* Vector2D.cpp */; };
+		C20DC8D92316E7B400F2A5F0 /* Map.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C20DC8D72316E7B400F2A5F0 /* Map.cpp */; };
+		C20DC8DD2317C72700F2A5F0 /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C20DC8DB2317C72700F2A5F0 /* Sprite.cpp */; };
 		C2D952BB23100896008C3166 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C2D952BA23100896008C3166 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +64,11 @@
 		C20DC8CD231690E700F2A5F0 /* Matrix3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix3.h; sourceTree = "<group>"; };
 		C20DC8CE231690E700F2A5F0 /* MathUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathUtil.h; sourceTree = "<group>"; };
 		C20DC8CF231690E700F2A5F0 /* Vector2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector2D.h; sourceTree = "<group>"; };
+		C20DC8D72316E7B400F2A5F0 /* Map.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Map.cpp; sourceTree = "<group>"; };
+		C20DC8D82316E7B400F2A5F0 /* Map.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Map.hpp; sourceTree = "<group>"; };
+		C20DC8DB2317C72700F2A5F0 /* Sprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
+		C20DC8DC2317C72700F2A5F0 /* Sprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Sprite.hpp; sourceTree = "<group>"; };
+		C20DC8E12317FC0C00F2A5F0 /* dungeon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dungeon.png; sourceTree = "<group>"; };
 		C2D952B723100896008C3166 /* game */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = game; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D952BA23100896008C3166 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +132,7 @@
 		C2D952B923100896008C3166 /* game */ = {
 			isa = PBXGroup;
 			children = (
+				C20DC8E12317FC0C00F2A5F0 /* dungeon.png */,
 				C20DC8C5231690E700F2A5F0 /* mathcpp */,
 				C201FAED2315614900C5892B /* link.png */,
 				C201FAF323157A8500C5892B /* bone.png */,
@@ -134,6 +142,10 @@
 				C201FADA231528DF00C5892B /* Player.cpp */,
 				C201FAC52314449D00C5892B /* GameSDL.hpp */,
 				C201FAC42314449D00C5892B /* GameSDL.cpp */,
+				C20DC8D82316E7B400F2A5F0 /* Map.hpp */,
+				C20DC8D72316E7B400F2A5F0 /* Map.cpp */,
+				C20DC8DC2317C72700F2A5F0 /* Sprite.hpp */,
+				C20DC8DB2317C72700F2A5F0 /* Sprite.cpp */,
 				C2D952BA23100896008C3166 /* main.cpp */,
 			);
 			path = game;
@@ -203,9 +215,11 @@
 				C2D952BB23100896008C3166 /* main.cpp in Sources */,
 				C201FAC62314449D00C5892B /* GameSDL.cpp in Sources */,
 				C20DC8D2231690E700F2A5F0 /* MathUtil.cpp in Sources */,
+				C20DC8D92316E7B400F2A5F0 /* Map.cpp in Sources */,
 				C201FAF12315716000C5892B /* Collectible.cpp in Sources */,
 				C201FADC231528DF00C5892B /* Player.cpp in Sources */,
 				C20DC8D5231690E700F2A5F0 /* Vector2D.cpp in Sources */,
+				C20DC8DD2317C72700F2A5F0 /* Sprite.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

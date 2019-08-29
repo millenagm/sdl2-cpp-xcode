@@ -1,13 +1,13 @@
 //
-//  Collectible.hpp
+//  Sprite.hpp
 //  game
 //
-//  Created by Millena Galvão on 27/08/2019.
+//  Created by Millena Galvão on 29/08/2019.
 //  Copyright © 2019 millena. All rights reserved.
 //
 
-#ifndef Collectible_hpp
-#define Collectible_hpp
+#ifndef Sprite_hpp
+#define Sprite_hpp
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdocumentation"
@@ -17,20 +17,22 @@
 #include <SDL2_image/SDL_image.h>
 #include <iostream>
 #include <stdio.h>
+#include <vector>
 
-class Collectible {
-protected:
-    SDL_Renderer *renderer;
+class Sprite {
 private:
+    SDL_Renderer *renderer;
     SDL_Texture *texture;
     SDL_Surface *image;
-    float angle;
+    SDL_Rect src;
 public:
-    Collectible(const char *sprite, SDL_Renderer *_renderer, int x, int y, int _size);
-    SDL_Rect pos;
+    Sprite(const char *sprite, SDL_Rect _pos, SDL_Renderer *_renderer);
+    Sprite(const char *sprite, SDL_Rect _pos, SDL_Rect _src, SDL_Renderer *_renderer);
     void exec();
     void start();
     void end();
+    
+    SDL_Rect pos;
 };
 
-#endif /* Collectible_hpp */
+#endif /* Sprite_hpp */

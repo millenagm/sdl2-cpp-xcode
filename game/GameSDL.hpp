@@ -20,6 +20,7 @@
 
 #include "Player.hpp"
 #include "Collectible.hpp"
+#include "Map.hpp"
 
 using namespace std;
 
@@ -43,15 +44,13 @@ struct Clock
 
 class GameSDL {
 private:
+    Map *map;
     int width, height;
     Player *player;
     SDL_Window *window;
     SDL_Renderer *renderer;
     bool _isRunning;
     void handleEvent(SDL_Event);
-    vector<Collectible *> collectibles;
-    vector<Collectible *> walls;
-    Collectible *p;
     Clock clock;
     void checkCollisions();
     bool isHittingWall;
