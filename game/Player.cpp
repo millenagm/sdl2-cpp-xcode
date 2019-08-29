@@ -35,6 +35,7 @@ Player::Player(const char *_name, SDL_Renderer *_renderer, int _size) {
     
     pos = { w, h, w, h };
     destinationPoint = Vector2D(w, h);
+    lastCollider = { -10000, -10000, -10000, -10000 };
 }
 
 void Player::moveTo(SDL_Point point) {
@@ -56,6 +57,21 @@ Direction spritedirection(Vector2D dir) {
         return direction_left;
     else
         return direction_right;
+}
+
+void Player::cancelMovement(SDL_Rect collider) {
+    lastCollider = collider;
+    int nx = lastCollider.x,
+        ny = lastCollider.y;
+    switch (spritedirection(direction)) {
+            //works
+        case direction_right: nx -= w; break;
+        case direction_down:  ny -= h; break;
+            //doesn't work :o
+        case direction_left:  nx += w; break;
+        case direction_up:    ny += h; break;
+    }
+    moveTo({ nx, ny });
 }
 
 void Player::exec(float delta) {

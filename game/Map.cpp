@@ -17,7 +17,48 @@ Tile tileForKey(string key) {
         return { 9, 9 };
     else if (key == "J")
         return { 8, 9 };
+    else if (key == "x")
+        return { 2, 2 };
+    else if (key == "M")
+        return { 0, 8 };
+    else if (key == "-")
+        return { 2, 0 };
+    else if (key == "_")
+        return { 1, 4 };
+    else if (key == "-|")
+        return { 5, 2 };
+    else if (key == "|-")
+        return { 0, 2 };
+    else if (key == "_|") //bottom right corner
+        return { 5, 4 };
+    else if (key == "|_") //bottom left corner
+        return { 0, 4 };
+    else if (key == "'|") //top right corner
+        return { 5, 0 };
+    else if (key == "|'") //top left corner
+        return { 0, 0 };
     return { };
+}
+
+Sprite *sprite16x16ForKey(string key, int x, int y, int size, SDL_Renderer *renderer) {
+    if (key == " ") return NULL;
+
+    int th = 16, tw = 16;
+    int divider = 1;
+    Tile t = tileForKey(key);
+    SDL_Rect ipos = { x * size, y * size, size, size };
+    SDL_Rect isrc = { t.x * tw +divider , t.y * th + divider , tw - divider, th - divider};
+    
+    return new Sprite("dungeon.png", ipos, isrc, renderer);
+}
+
+Sprite *sprite16x16ForMap(string map[10][10], int x, int y, int size, SDL_Renderer *renderer) {
+    return sprite16x16ForKey(map[y][x], x, y, size, renderer);
+}
+
+void addSpriteToVector(Sprite *sprite, vector <Sprite *> *vec) {
+    if (sprite == NULL) return;
+    vec->push_back(sprite);
 }
 
 Map::Map(int _size, SDL_Renderer *_renderer) {
@@ -26,17 +67,14 @@ Map::Map(int _size, SDL_Renderer *_renderer) {
     size = _size;
     renderer = _renderer;
     
-    int tw = 160 / 10;
-    int th = 160 / 10;
-    
-    string map[10][10] = {
+    string litems[10][10] = {
         { " ", " ", " ", " ", " ", " ", " ", " ", " ", " " },
         
         { " ", " ", "K", " ", " ", " ", " ", " ", " ", " " },
         
         { " ", " ", " ", " ", " ", " ", " ", " ", " ", " " },
         
-        { " ", " ", " ", " ", " ", " ", " ", " ", "K", " " },
+        { " ", " ", " ", " ", " ", " ", " ", " ", " ", " " },
         
         { " ", " ", " ", " ", " ", " ", " ", " ", " ", " " },
         
@@ -51,46 +89,33 @@ Map::Map(int _size, SDL_Renderer *_renderer) {
         { " ", " ", " ", " ", " ", " ", " ", " ", " ", " " }
     };
     
+    string lwalls[10][10] = {
+        { "|'", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
+        
+        { "|-", " ", "M", " ", " ", " ", " ", " ", " ", " " },
+        
+        { "|-", " ", " ", " ", " ", " ", " ", "_", "_", "-|" },
+        
+        { "|-", " ", " ", " ", " ", " ", " ", " ", " ", "-|" },
+        
+        { "|-", " ", " ", " ", " ", " ", " ", " ", " ", "-|" },
+        
+        { "|-", " ", " ", " ", " ", " ", " ", " ", " ", "-|" },
+        
+        { "|-", " ", "M", " ", " ", " ", " ", " ", " ", "-|" },
+        
+        { "|-", " ", " ", " ", " ", " ", " ", " ", " ", "-|" },
+        
+        { "|-", " ", " ", " ", " ", " ", " ", "M", " ", "-|" },
+        
+        { "|_", "_", "_", "_", "_", "_", "_", "_", "_", "_|" }
+    };
+    
     for (int x = 0; x < w; x++) {
         for (int y = 0; y < h; y++) {
-            string item = map[y][x];
-            
-            Tile t = tileForKey(item);
-            SDL_Rect ipos = { x * size + size / 4, y * size + size / 4, size / 2, size / 2 };
-            SDL_Rect isrc = { t.x * tw , t.y * th , tw, th };
-            
-            if (item != " ") {
-                items.push_back(new Sprite("dungeon.png", ipos, isrc, renderer));
-            }
-        }
-    }
-    
-  
-    
-    for (int x = 0; x < w; x++) {
-        for (int y = 0; y < h; y++) {
-            int lx, ly;
-
-            if (x == 0) {
-                lx = 0;
-            } else if (x == w - 1) {
-                lx = 5;
-            } else {
-                lx = 2;
-            }
-
-            if (y == 0) {
-                ly = 0;
-            } else if (y == h - 1) {
-                ly = 4;
-            } else {
-                ly = 2;
-            }
-
-            int divider = 0;
-            SDL_Rect pos = { x * size, y * size, size, size };
-            SDL_Rect src = { lx * tw + divider , ly * th + divider , tw - divider, th - divider };
-            grid.push_back(new Sprite("dungeon.png", pos, src, renderer));
+            addSpriteToVector(sprite16x16ForMap(litems, x, y, size, renderer), &items);
+            addSpriteToVector(sprite16x16ForMap(lwalls, x, y, size, renderer), &walls);
+            addSpriteToVector(sprite16x16ForKey("x", x, y, size, renderer), &grid);
         }
     }
 }
@@ -101,4 +126,7 @@ void Map::exec() {
     
     for (Sprite* i : items)
         i->exec();
+    
+    for (Sprite* w : walls)
+        w->exec();
 }

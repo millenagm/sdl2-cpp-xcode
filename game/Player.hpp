@@ -37,13 +37,14 @@ private:
     SDL_Texture *texture;
     SDL_Surface *image;
     const char *name;
-    bool moving;
+    SDL_Rect lastCollider;
     Vector2D direction, destinationPoint;
 public:
     Player(const char *_name, SDL_Renderer *_renderer, int _size);
     void moveTo(SDL_Point point);
     void exec(float);
     void start();
+    void cancelMovement(SDL_Rect collider);
     void end();    
     SDL_Rect pos;
 };

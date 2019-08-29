@@ -66,14 +66,18 @@ void GameSDL::exec() {
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderClear(renderer);
     
+    checkCollisions();
     map->exec();
     player->exec(clock.delta);
     
-    checkCollisions();
     SDL_RenderPresent(renderer);
 }
 
 void GameSDL::checkCollisions() {
+    for (Sprite* col : map->getWalls())
+        if (SDL_HasIntersection(&player->pos, &col->pos))
+            player->cancelMovement(col->pos);
+            
     for (Sprite* col :  map->getCollectibles())
         if (SDL_HasIntersection(&player->pos, &col->pos))
             col->end();

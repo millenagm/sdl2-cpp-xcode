@@ -27,11 +27,13 @@ private:
     int w, h, size;
     vector <Sprite *> grid;
     vector <Sprite *> items;
+    vector <Sprite *> walls;
     SDL_Renderer *renderer;
 public:
     Map(int _size, SDL_Renderer *_renderer);
     void exec();
     inline vector <Sprite *> getCollectibles() { return items; }
+    inline vector <Sprite *> getWalls() { return walls; }
 };
 
 #endif /* Map_hpp */
