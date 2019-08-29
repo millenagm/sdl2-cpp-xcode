@@ -19,7 +19,6 @@
 #include <vector>
 
 #include "Player.hpp"
-#include "Collectible.hpp"
 #include "Map.hpp"
 
 using namespace std;

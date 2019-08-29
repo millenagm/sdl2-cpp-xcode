@@ -22,7 +22,7 @@ Player::Player(const char *_name, SDL_Renderer *_renderer, int _size) {
     name = _name;
     renderer = _renderer;
     speed = 0.2f;
-    image = IMG_Load("link.png");
+    image = IMG_Load("assets/link.png");
     texture = SDL_CreateTextureFromSurface(renderer, image);
     direction = vector_zero;
     

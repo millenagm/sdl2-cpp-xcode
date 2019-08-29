@@ -49,7 +49,7 @@ Sprite *sprite16x16ForKey(string key, int x, int y, int size, SDL_Renderer *rend
     SDL_Rect ipos = { x * size, y * size, size, size };
     SDL_Rect isrc = { t.x * tw +divider , t.y * th + divider , tw - divider, th - divider};
     
-    return new Sprite("dungeon.png", ipos, isrc, renderer);
+    return new Sprite("assets/dungeon.png", ipos, isrc, renderer);
 }
 
 Sprite *sprite16x16ForMap(string map[10][10], int x, int y, int size, SDL_Renderer *renderer) {
