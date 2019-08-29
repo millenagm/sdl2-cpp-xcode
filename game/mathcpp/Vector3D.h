@@ -55,15 +55,15 @@ namespace math
         /**
           Creates a new Vector3D using the x and y coordinates
           from the given Vector2D and the given z coordinate.
-          @param Vector2D& A 2D vector
-          @param z A z coordinate.
+          @param other A 2D vector
+          @param _z A z coordinate.
         */
         explicit Vector3D(const Vector2D& other, float _z);
 
         /**
             Creates a new Vector3D using the x and y coordinates
             from the given Vector2D and applying 0 in the Z coordinate
-            @param Vector2D& A 2D vector
+            @param other A 2D vector
         */
         explicit Vector3D(const Vector2D& other);
 
@@ -131,8 +131,8 @@ namespace math
             Sets the x, y and z coordinates in one single operation.
             The x and y coordinates will be taken from the given Vector2D.
 
-            @param Vector2D& A 2D vector
-            @param z A z coordinate.
+            @param v A 2D vector
+            @param _z A z coordinate.
         */
         Vector3D& set(const Vector2D& v, float _z);
 
@@ -148,7 +148,7 @@ namespace math
             Allows read access to the vector coordinates as if was
             an array containing the x in index 0, y in index 1
             and z in index 2. No bounds check are made, so be careful.
-            @param k The coordinate index. As descrived above.
+            @param index The coordinate index. As described above.
         */
         float operator [](long index) const;
 
